@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="avoaBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#11141e"/>
+      <stop offset="100%" stop-color="#0a0c14"/>
+    </linearGradient>
+    <linearGradient id="avoaCard" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#181d2c"/>
+      <stop offset="100%" stop-color="#121622"/>
+    </linearGradient>
+    <linearGradient id="amberGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#e5b067"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="800" height="500" rx="12" fill="url(#avoaBg)"/>
+  <rect width="800" height="500" rx="12" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1.5"/>
+
+  <!-- Top App Bar -->
+  <rect width="800" height="60" fill="#0c0e17" rx="12"/>
+  <rect y="48" width="800" height="12" fill="#0c0e17"/>
+  <line x1="0" y1="60" x2="800" y2="60" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+
+  <!-- Window Dots -->
+  <circle cx="28" cy="30" r="5" fill="#ef4444" fill-opacity="0.6"/>
+  <circle cx="44" cy="30" r="5" fill="#f59e0b" fill-opacity="0.6"/>
+  <circle cx="60" cy="30" r="5" fill="#10b981" fill-opacity="0.6"/>
+
+  <!-- App Brand -->
+  <text x="90" y="36" fill="#f3f4f6" font-family="'Cinzel', serif" font-weight="700" font-size="16" letter-spacing="1">AVOA</text>
+  <text x="145" y="35" fill="#9ca3af" font-family="'JetBrains Mono', monospace" font-size="11">| STAYS &amp; EXPERIENCES</text>
+
+  <!-- Search / Filter Pill -->
+  <rect x="320" y="16" width="280" height="28" rx="14" fill="#1a1e2b" stroke="#ffffff" stroke-opacity="0.08"/>
+  <text x="340" y="34" fill="#9ca3af" font-family="'Plus Jakarta Sans', sans-serif" font-size="11">Search destinations, stays, amenities...</text>
+
+  <!-- Vite Migration Badge -->
+  <rect x="680" y="18" width="96" height="24" rx="12" fill="#e5b067" fill-opacity="0.12" stroke="#e5b067" stroke-opacity="0.3"/>
+  <text x="696" y="34" fill="#e5b067" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="600">VITE ⚡ HMR</text>
+
+  <!-- Content Showcase: 2 Listing Cards -->
+  <!-- Card 1 -->
+  <g transform="translate(40, 90)">
+    <rect width="340" height="360" rx="10" fill="url(#avoaCard)" stroke="#ffffff" stroke-opacity="0.07"/>
+    <!-- Image Thumbnail Placeholder -->
+    <rect x="12" y="12" width="316" height="180" rx="8" fill="#1e2436"/>
+    <!-- Mountains / Villa vector art -->
+    <path d="M40 170 L120 70 L200 170 Z" fill="#2d3748" fill-opacity="0.7"/>
+    <path d="M140 170 L220 90 L300 170 Z" fill="#374151" fill-opacity="0.7"/>
+    <circle cx="270" cy="55" r="18" fill="#e5b067" fill-opacity="0.25"/>
+
+    <!-- Listing Tag -->
+    <rect x="24" y="24" width="70" height="20" rx="10" fill="#000000" fill-opacity="0.7"/>
+    <text x="36" y="38" fill="#e5b067" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600">VERIFIED</text>
+
+    <!-- Details -->
+    <text x="20" y="222" fill="#f3f4f6" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="15">The Heritage Stone Villa</text>
+    <text x="20" y="244" fill="#9ca3af" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">Kullu Valley, Himachal Pradesh • Mountain View</text>
+
+    <!-- Rating & Price -->
+    <line x1="20" y1="264" x2="320" y2="264" stroke="#ffffff" stroke-opacity="0.06"/>
+    <text x="20" y="292" fill="#e5b067" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="13">★ 4.92</text>
+    <text x="65" y="292" fill="#6b7280" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">(48 reviews)</text>
+
+    <text x="210" y="292" fill="#f3f4f6" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="16">₹6,400</text>
+    <text x="268" y="292" fill="#9ca3af" font-family="'Plus Jakarta Sans', sans-serif" font-size="11">/ night</text>
+
+    <!-- Action Button -->
+    <rect x="20" y="314" width="300" height="34" rx="6" fill="#e5b067" fill-opacity="0.15" stroke="#e5b067" stroke-opacity="0.4"/>
+    <text x="120" y="336" fill="#e5b067" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600">RESERVE STAY →</text>
+  </g>
+
+  <!-- Card 2 -->
+  <g transform="translate(420, 90)">
+    <rect width="340" height="360" rx="10" fill="url(#avoaCard)" stroke="#ffffff" stroke-opacity="0.07"/>
+    <!-- Image Thumbnail -->
+    <rect x="12" y="12" width="316" height="180" rx="8" fill="#1e2436"/>
+    <!-- Coastal Sea path art -->
+    <path d="M12 150 Q160 120 328 150 L328 192 L12 192 Z" fill="#1e3a8a" fill-opacity="0.3"/>
+    <path d="M12 165 Q170 140 328 165 L328 192 L12 192 Z" fill="#0284c7" fill-opacity="0.3"/>
+    <circle cx="100" cy="65" r="22" fill="#f59e0b" fill-opacity="0.2"/>
+
+    <rect x="24" y="24" width="70" height="20" rx="10" fill="#000000" fill-opacity="0.7"/>
+    <text x="36" y="38" fill="#e5b067" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="600">POPULAR</text>
+
+    <!-- Details -->
+    <text x="20" y="222" fill="#f3f4f6" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="15">Azure Coastline Cottage</text>
+    <text x="20" y="244" fill="#9ca3af" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">South Goa, Goa • Beachfront Access</text>
+
+    <line x1="20" y1="264" x2="320" y2="264" stroke="#ffffff" stroke-opacity="0.06"/>
+    <text x="20" y="292" fill="#e5b067" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="13">★ 4.88</text>
+    <text x="65" y="292" fill="#6b7280" font-family="'Plus Jakarta Sans', sans-serif" font-size="12">(62 reviews)</text>
+
+    <text x="210" y="292" fill="#f3f4f6" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="16">₹8,200</text>
+    <text x="268" y="292" fill="#9ca3af" font-family="'Plus Jakarta Sans', sans-serif" font-size="11">/ night</text>
+
+    <rect x="20" y="314" width="300" height="34" rx="6" fill="#ffffff" fill-opacity="0.05" stroke="#ffffff" stroke-opacity="0.1"/>
+    <text x="120" y="336" fill="#e2e8f0" font-family="'JetBrains Mono', monospace" font-size="12">VIEW DETAILS →</text>
+  </g>
+</svg>

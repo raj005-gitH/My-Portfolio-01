@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 750" width="100%" height="100%">
+  <defs>
+    <!-- Warm Amber Rim Lighting -->
+    <linearGradient id="warmAmberRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.4"/>
+      <stop offset="40%" stop-color="#d97706" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Subtle Dot Grid Matrix with soft radial fade -->
+    <pattern id="dotMatrix" x="0" y="0" width="16" height="16" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#e5b067" fill-opacity="0.12"/>
+    </pattern>
+
+    <radialGradient id="centerGlow" cx="50%" cy="46%" r="50%">
+      <stop offset="0%" stop-color="#e5b067" stop-opacity="0.15"/>
+      <stop offset="50%" stop-color="#e5b067" stop-opacity="0.03"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Soft Vignette Mask to guarantee seamless background integration -->
+    <radialGradient id="fadeMaskGrad" cx="50%" cy="48%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="fadeMask">
+      <rect width="600" height="750" fill="url(#fadeMaskGrad)"/>
+    </mask>
+  </defs>
+
+  <!-- Ambient Glow & Dot Matrix floating framelessly -->
+  <g mask="url(#fadeMask)">
+    <circle cx="300" cy="370" r="280" fill="url(#centerGlow)"/>
+    <rect width="600" height="750" fill="url(#dotMatrix)"/>
+  </g>
+
+  <!-- Stylized Cinematic Silhouette with Monogram - Frameless & Integrated -->
+  <g transform="translate(300, 360)">
+    <!-- Aura Rings -->
+    <circle r="185" fill="none" stroke="#e5b067" stroke-opacity="0.08" stroke-width="1" stroke-dasharray="2 8"/>
+    <circle r="150" fill="none" stroke="#e5b067" stroke-opacity="0.14" stroke-width="1" stroke-dasharray="4 6"/>
+    <circle r="120" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+    <circle r="95" fill="#131622" fill-opacity="0.6" stroke="#e5b067" stroke-opacity="0.3" stroke-width="1.5"/>
+
+    <!-- Subtle Silhouette Head & Shoulders Shape -->
+    <path d="M-65 115 C-65 72 -38 52 0 52 C38 52 65 72 65 115 Z" fill="#171b28" fill-opacity="0.85" stroke="#e5b067" stroke-opacity="0.25" stroke-width="1"/>
+    <circle cx="0" cy="8" r="38" fill="#191e2e" fill-opacity="0.9" stroke="#e5b067" stroke-opacity="0.3" stroke-width="1"/>
+
+    <!-- JS Monogram Crest -->
+    <text x="0" y="16" text-anchor="middle" fill="#e5b067" font-family="'Cinzel', serif" font-weight="700" font-size="28" letter-spacing="2">JS</text>
+  </g>
+
+  <!-- Drop-In Instruction Banner -->
+  <g transform="translate(300, 560)">
+    <rect x="-175" y="-18" width="350" height="36" rx="18" fill="#090a0f" fill-opacity="0.85" stroke="#e5b067" stroke-opacity="0.3" stroke-width="1"/>
+    <circle cx="-145" cy="0" r="4" fill="#e5b067"/>
+    <text x="-130" y="4" fill="#e5b067" font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="0.5">READY FOR: public/portrait.jpg</text>
+  </g>
+</svg>
