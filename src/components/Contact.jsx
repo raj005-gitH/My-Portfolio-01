@@ -24,6 +24,12 @@ export default function Contact() {
 
   const handleCopyEmail = () => {
     const email = PERSONAL_INFO.email;
+    if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+      window.gtag('event', 'copy_email', {
+        event_category: 'Engagement',
+        event_label: email
+      });
+    }
     if (navigator?.clipboard?.writeText) {
       navigator.clipboard.writeText(email)
         .then(() => {
@@ -82,6 +88,13 @@ export default function Contact() {
       );
       window.location.href = `mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`;
 
+      if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          event_category: 'Contact',
+          event_label: 'Mailto Fallback'
+        });
+      }
+
       setStatus({
         state: 'success',
         msg: 'Opened your email client as fallback. (Add your Web3Forms access key in .env for direct background delivery).'
@@ -114,6 +127,12 @@ export default function Contact() {
       const data = await response.json();
 
       if (data.success) {
+        if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+          window.gtag('event', 'generate_lead', {
+            event_category: 'Contact',
+            event_label: 'Web3Forms Direct'
+          });
+        }
         setStatus({
           state: 'success',
           msg: 'Thank you! Your message was delivered straight to my inbox. I will get back to you shortly.'
