@@ -7,6 +7,7 @@ import {
   Check,
   ArrowUpRight,
   Send,
+  Loader2,
   Code2,
   FileText,
   Globe
@@ -16,6 +17,7 @@ export default function Contact() {
   const [copied, setCopied] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState({ state: 'idle', msg: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [headerRef, headerRevealed] = useScrollReveal({ threshold: 0.15 });
   const [gridRef, gridRevealed] = useScrollReveal({ threshold: 0.12 });
@@ -55,24 +57,82 @@ export default function Contact() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       setStatus({ state: 'error', msg: 'Please provide all fields before sending.' });
       return;
     }
 
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
-    window.location.href = `mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setStatus({ state: 'error', msg: 'Please enter a valid email address.' });
+      return;
+    }
 
-    setStatus({
-      state: 'success',
-      msg: 'Your email client has been opened! Looking forward to connecting.'
-    });
-    setFormData({ name: '', email: '', message: '' });
+    const accessKey =
+      import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ||
+      PERSONAL_INFO.web3FormsAccessKey;
+
+    // Graceful fallback to mailto if access key is not yet configured
+    if (!accessKey || accessKey.trim() === '' || accessKey === 'YOUR_ACCESS_KEY_HERE') {
+      const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      );
+      window.location.href = `mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`;
+
+      setStatus({
+        state: 'success',
+        msg: 'Opened your email client as fallback. (Add your Web3Forms access key in .env for direct background delivery).'
+      });
+      setFormData({ name: '', email: '', message: '' });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setStatus({ state: 'loading', msg: 'Sending message directly to inbox...' });
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: accessKey.trim(),
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Inquiry from ${formData.name}`,
+          from_name: formData.name,
+          replyto: formData.email
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus({
+          state: 'success',
+          msg: 'Thank you! Your message was delivered straight to my inbox. I will get back to you shortly.'
+        });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setStatus({
+          state: 'error',
+          msg: data.message || 'Submission failed. Please try again or use direct email.'
+        });
+      }
+    } catch {
+      setStatus({
+        state: 'error',
+        msg: 'Network error. Could not send message. Please copy email directly.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const verifiedLinks = [
@@ -176,7 +236,7 @@ export default function Contact() {
               <span className="contact-card-label">SEND A MESSAGE</span>
               <h3 className="contact-headline">How can we work together?</h3>
               <p className="contact-card-desc">
-                Fill in the details below to open a direct email thread with prefilled context.
+                Fill in the details below to send a message directly to my inbox.
               </p>
 
               <form onSubmit={handleSubmit} className="inquiry-form" noValidate>
@@ -191,6 +251,7 @@ export default function Contact() {
                     placeholder="e.g. Alex Chen (Founding Engineer / Recruiter)"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    disabled={isSubmitting}
                     required
                   />
                 </div>
@@ -206,6 +267,7 @@ export default function Contact() {
                     placeholder="e.g. alex@company.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    disabled={isSubmitting}
                     required
                   />
                 </div>
@@ -221,19 +283,30 @@ export default function Contact() {
                     placeholder="Tell me about the role, project, or problem you want to solve..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    disabled={isSubmitting}
                     required
                   />
                 </div>
 
                 {status.msg && (
                   <div className={`form-status-alert ${status.state}`}>
+                    {status.state === 'loading' && <Loader2 size={14} className="icon-spin" />}
                     <span>{status.msg}</span>
                   </div>
                 )}
 
-                <button type="submit" className="btn btn-primary btn-full">
-                  <span>Send Message</span>
-                  <Send size={15} />
+                <button type="submit" className="btn btn-primary btn-full" disabled={isSubmitting}>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 size={15} className="icon-spin" />
+                      <span>Sending Message...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <Send size={15} />
+                    </>
+                  )}
                 </button>
               </form>
             </div>

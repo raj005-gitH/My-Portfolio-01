@@ -12,6 +12,9 @@ export const PERSONAL_INFO = {
   status: "Available for Software Engineering roles & ambitious product collaborations",
   location: "India",
   email: "jayrajmthakur@gmail.com", // Configurable: Update with your primary inbox
+  // Web3Forms configuration:
+  // Paste your access key here OR set VITE_WEB3FORMS_ACCESS_KEY in your .env file
+  web3FormsAccessKey: "",
   links: {
     github: "https://github.com/raj005-gitH",
     linkedin: "https://www.linkedin.com/in/jayrajsinght",
