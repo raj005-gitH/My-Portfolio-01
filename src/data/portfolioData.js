@@ -119,6 +119,7 @@ export const PROJECTS = [
     tagline: "Market Simulation & Algorithmic Tooling",
     category: "Systems & Data Exploration",
     featured: false,
+    image: "/tradeblitz.png",
     liveUrl: null, // Exploratory prototype
     githubUrl: "https://github.com/raj005-gitH/TradeBlitz",
     statusBadge: "Engineering Exploration",
